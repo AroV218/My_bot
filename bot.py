@@ -7,7 +7,7 @@ ADMIN_ID = 1547432883
 WAITING_QUESTION = 1
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    keyboard = [["❓ Задать вопрос"]]
+    keyboard = [["Задать вопрос"]]
     reply_markup = ReplyKeyboardMarkup(keyboard, resize_keyboard=True)
     await update.message.reply_text("Привет! Нажми кнопку, чтобы задать вопрос.", reply_markup=reply_markup)
 
@@ -20,15 +20,15 @@ async def receive_question(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text
     await context.bot.send_message(
         chat_id=ADMIN_ID,
-        text=f"❓ Вопрос от @{user.username} ({user.first_name}):\n\n{text}"
+        text=f"Вопрос от @{user.username} ({user.first_name}):\n\n{text}"
     )
-    await update.message.reply_text("Спасибо! Ваш вопрос отправлен ✅")
+    await update.message.reply_text("Спасибо! Ваш вопрос отправлен")
     return ConversationHandler.END
 
 app = ApplicationBuilder().token(BOT_TOKEN).build()
 
 conv_handler = ConversationHandler(
-    entry_points=[MessageHandler(filters.Regex("^❓ Задать вопрос$"), ask_question_button)],
+    entry_points=[MessageHandler(filters.Regex("^Задать вопрос$"), ask_question_button)],
     states={WAITING_QUESTION: [MessageHandler(filters.TEXT & ~filters.COMMAND, receive_question)]},
     fallbacks=[]
 )
