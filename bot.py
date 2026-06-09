@@ -20,7 +20,7 @@ async def receive_question(update: Update, context: ContextTypes.DEFAULT_TYPE):
     text = update.message.text
     await context.bot.send_message(
         chat_id=ADMIN_ID,
-        text=f"Вопрос от @{user.username} ({user.first_name}):\n\n{text}"
+        text=f"Анонимный вопрос:\n\n{text}"
     )
     await update.message.reply_text("Спасибо! Ваш вопрос отправлен")
     return ConversationHandler.END
