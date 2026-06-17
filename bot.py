@@ -10,7 +10,6 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     keyboard = [["✍️ Написать вопрос"]]
     reply_markup = ReplyKeyboardMarkup(keyboard, resize_keyboard=True)
     await update.message.reply_text(
-        "Здесь Вы можете задать анонимный вопрос.\n\n"
         "👇 Нажмите кнопку внизу экрана:\n"
         "«✍️ Написать вопрос»\n\n"
         "✅ Потом напишите свой вопрос и отправьте его\n\n"
@@ -29,7 +28,11 @@ async def receive_question(update: Update, context: ContextTypes.DEFAULT_TYPE):
         chat_id=ADMIN_ID,
         text=f"Анонимный вопрос:\n\n{text}"
     )
-    await update.message.reply_text("Спасибо! Ваш вопрос отправлен ✅")
+    await update.message.reply_text(
+    "Спасибо! Ваш вопрос отправлен ✅\n\n"
+    "Чтобы отправить следующий вопрос —\n"
+    "снова нажмите кнопку «✍️ Написать вопрос»"
+)
     return ConversationHandler.END
 
 app = ApplicationBuilder().token(BOT_TOKEN).build()
