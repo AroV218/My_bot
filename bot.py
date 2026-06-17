@@ -7,18 +7,19 @@ ADMIN_ID = 1547432883
 WAITING_QUESTION = 1
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    keyboard = [["📩 Отправить вопрос"]]
+    keyboard = [["✍️ Написать вопрос"]]
     reply_markup = ReplyKeyboardMarkup(keyboard, resize_keyboard=True)
     await update.message.reply_text(
         "Здесь Вы можете задать анонимный вопрос.\n\n"
-        "👇 Нажмите кнопку внизу экрана — «📩 Написать вопрос»\n"
+        "👇 Нажмите кнопку внизу экрана:\n"
+        "«✍️ Написать вопрос»\n\n"
         "✅ Потом напишите свой вопрос и отправьте его\n\n"
         "⚠️ Не пишите вопрос сразу — сначала нажмите кнопку!",
         reply_markup=reply_markup
     )
 
 async def ask_question_button(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    await update.message.reply_text("Напиши свой вопрос:")
+    await update.message.reply_text("Напишите свой вопрос:")
     return WAITING_QUESTION
 
 async def receive_question(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -34,7 +35,7 @@ async def receive_question(update: Update, context: ContextTypes.DEFAULT_TYPE):
 app = ApplicationBuilder().token(BOT_TOKEN).build()
 
 conv_handler = ConversationHandler(
-    entry_points=[MessageHandler(filters.Regex("^📩 Написать вопрос$"), ask_question_button)],
+    entry_points=[MessageHandler(filters.Regex("^✍️ Написать вопрос$"), ask_question_button)],
     states={WAITING_QUESTION: [MessageHandler(filters.TEXT & ~filters.COMMAND, receive_question)]},
     fallbacks=[]
 )
