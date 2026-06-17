@@ -10,11 +10,10 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     keyboard = [["📩 Отправить вопрос"]]
     reply_markup = ReplyKeyboardMarkup(keyboard, resize_keyboard=True)
     await update.message.reply_text(
-        "👋 Привет!\n\n"
-        "Здесь ты можешь задать анонимный вопрос.\n\n"
-        "👇 Нажми кнопку внизу экрана — «📩 Написать вопрос»\n"
-        "✅ Потом напиши свой вопрос и отправь его\n\n"
-        "⚠️ Не пиши вопрос сразу — сначала нажми кнопку!",
+        "Здесь Вы можете задать анонимный вопрос.\n\n"
+        "👇 Нажмите кнопку внизу экрана — «📩 Написать вопрос»\n"
+        "✅ Потом напишите свой вопрос и отправьте его\n\n"
+        "⚠️ Не пишите вопрос сразу — сначала нажмите кнопку!",
         reply_markup=reply_markup
     )
 
