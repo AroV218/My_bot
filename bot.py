@@ -12,8 +12,8 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text(
         "👋 Привет!\n\n"
         "Здесь ты можешь задать анонимный вопрос.\n\n"
-        "👇 Нажми кнопку внизу экрана — «📩 Отправить вопрос»\n"
-        "✅ Потом напиши свой вопрос\n\n"
+        "👇 Нажми кнопку внизу экрана — «📩 Написать вопрос»\n"
+        "✅ Потом напиши свой вопрос и отправь его\n\n"
         "⚠️ Не пиши вопрос сразу — сначала нажми кнопку!",
         reply_markup=reply_markup
     )
@@ -35,7 +35,7 @@ async def receive_question(update: Update, context: ContextTypes.DEFAULT_TYPE):
 app = ApplicationBuilder().token(BOT_TOKEN).build()
 
 conv_handler = ConversationHandler(
-    entry_points=[MessageHandler(filters.Regex("^📩 Отправить вопрос$"), ask_question_button)],
+    entry_points=[MessageHandler(filters.Regex("^📩 Написать вопрос$"), ask_question_button)],
     states={WAITING_QUESTION: [MessageHandler(filters.TEXT & ~filters.COMMAND, receive_question)]},
     fallbacks=[]
 )
